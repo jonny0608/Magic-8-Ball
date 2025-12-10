@@ -1,72 +1,68 @@
-let lastX = 0;
-let shakes = 0;
-let cooldown = false;
+window.addEventListener('DOMContentLoaded', () => {
+    let lastX = 0;
+    let shakes = 0;
+    let cooldown = false;
 
-const ball = document.getElementById('response-img');
-
-window.addEventListener("mousemove", function (e) {
-    let movement = Math.abs(e.clientX - lastX);
-
-    if (movement > 30) {
-        shakes++;
-    } else {
-        shakes = 0;
-    }
-
-    if (shakes > 5 && !cooldown) {
-        cooldown = true;
-        ball.classList.add("shake-animation");
-
-        setTimeout(() => {
-            ball.classList.remove("shake-animation");
-            shakeMagic8Ball();
-            cooldown = false;
-        }, 600);
-
-        shakes = 0;
-    }
-
-    lastX = e.clientX;
-});
-
-function shakeMagic8Ball() {
-    const question = prompt("What is your question for the Magic 8 Ball?");
-
-    if (question === null) {
-        document.getElementById('response-text').innerText = 'Please ask a question!';
-        ball.src = 'unhappyFace.jpg';
-        return;
-    }
-
-    if (!question.trim()) {
-        alert('Please type a real question!');
-        return;
-    }
+    const ball = document.getElementById('response-img');
+    const textEl = document.getElementById('response-text');
+    const button = document.getElementById('shake-button');
 
     const answers = [
-        { text: "Yes", color: "text-success", img: "yes-image.jpg" },
-        { text: "Maybe", color: "text-primary", img: "blueemoji.jpg" },
-        { text: "Ask someone near you", color: "text-info", img: "yes-image.jpg" },
-        { text: "It will happen", color: "text-success", img: "yes-image.jpg" },
-        { text: "purchance", color: "text-success", img: "yes-image.jpg" },
-        { text: "Whatever makes you happy", color: "text-success", img: "yes-image.jpg" },
-        { text: "Ask Mr.Kilogore", color: "#556B2F", img: "yes-image.jpg" },
-        { text: "if it makes you happy", color: "text-success", img: "yes-image.jpg" },
-        { text: "Ask again", color: "#B8860B", img: "yes-image.jpg" }
+        { text: 'Yes', color: '#00ff88', img: 'yes-image.jpg' },
+        { text: 'Maybe', color: '#66aaff', img: 'blueemoji.jpg' },
+        { text: 'Ask someone near you', color: '#ffaa33', img: 'yes-image.jpg' },
+        { text: 'It will happen', color: '#00ff88', img: 'yes-image.jpg' },
+        { text: 'Perchance', color: '#00ffaa', img: 'yes-image.jpg' },
+        { text: 'Whatever makes you happy', color: '#00ff88', img: 'yes-image.jpg' },
+        { text: 'Ask Mr. Kilogore', color: '#88cc44', img: 'yes-image.jpg' },
+        { text: 'If it makes you happy', color: '#00ff88', img: 'yes-image.jpg' },
+        { text: 'Ask again', color: '#ffcc33', img: 'yes-image.jpg' }
     ];
 
-    const result = answers[Math.floor(Math.random() * answers.length)];
+    function shakeMagic8Ball() {
+        const question = prompt('Ask a question for the Magic 8-Ball:');
+        if (!question || !question.trim()) {
+            textEl.innerText = 'Please ask a real question!';
+            ball.src = 'unhappyFace.jpg';
+            return;
+        }
 
-    const textEl = document.getElementById('response-text');
-    textEl.innerText = result.text;
-
-    if (result.color.startsWith("#")) {
-        textEl.className = 'display-4 text-center';
+        const result = answers[Math.floor(Math.random() * answers.length)];
+        textEl.innerText = result.text;
         textEl.style.color = result.color;
-    } else {
-        textEl.className = `display-4 text-center ${result.color}`;
-        textEl.style.color = '';
+        ball.src = result.img;
+
+        // Trigger fade-in animation
+        textEl.style.animation = 'none';
+        void textEl.offsetWidth;
+        textEl.style.animation = 'fadeIn 0.6s ease';
     }
 
-    ball.src = result.img;
-}
+    // Button click triggers Magic 8-Ball
+    button.addEventListener('click', () => {
+        ball.classList.add('shake-animation');
+        setTimeout(() => {
+            ball.classList.remove('shake-animation');
+            shakeMagic8Ball();
+        }, 600);
+    });
+
+    // Mouse shake triggers Magic 8-Ball
+    window.addEventListener('mousemove', (e) => {
+        let movement = Math.abs(e.clientX - lastX);
+        shakes = movement > 30 ? shakes + 1 : 0;
+
+        if (shakes > 5 && !cooldown) {
+            cooldown = true;
+            ball.classList.add('shake-animation');
+            setTimeout(() => {
+                ball.classList.remove('shake-animation');
+                shakeMagic8Ball();
+                cooldown = false;
+            }, 700);
+            shakes = 0;
+        }
+
+        lastX = e.clientX;
+    });
+});

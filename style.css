@@ -1,22 +1,65 @@
-<style>
-.magic-ball {
-    transition: transform 0.2s ease;
-    display: inline-block;
-}
-
+/* Body & background */
 body {
-    cursor: url('8ballproject.png'), auto;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
 }
 
+/* Header & footer gradient */
+.bg-gradient {
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: #fff;
+}
+
+/* Magic 8-Ball styling */
+.magic-ball {
+    width: 260px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    border-radius: 50%;
+}
+
+.magic-ball:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Shake animation */
 @keyframes shake {
     0% { transform: rotate(0deg); }
-    25% { transform: rotate(8deg); }
-    50% { transform: rotate(-8deg); }
-    75% { transform: rotate(6deg); }
+    25% { transform: rotate(6deg); }
+    50% { transform: rotate(-6deg); }
+    75% { transform: rotate(4deg); }
     100% { transform: rotate(0deg); }
 }
 
 .shake-animation {
     animation: shake 0.6s ease;
 }
-</style>
+
+/* Response text fade-in */
+#response-text {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Button focus effect */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px #66aaff;
+}
+
+/* Footer badge */
+footer .badge {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
