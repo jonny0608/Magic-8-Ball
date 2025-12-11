@@ -8,15 +8,15 @@ window.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('shake-button');
 
     const answers = [
-        { text: 'Yes', color: '#00ff88', img: 'yes-image.jpg' },
+        { text: 'Yes', color: '#00ff88', img: 'wink-blue-emoji-blue.png' },
         { text: 'Maybe', color: '#66aaff', img: 'blueemoji.jpg' },
-        { text: 'Ask someone near you', color: '#ffaa33', img: 'yes-image.jpg' },
-        { text: 'It will happen', color: '#00ff88', img: 'yes-image.jpg' },
-        { text: 'Perchance', color: '#00ffaa', img: 'yes-image.jpg' },
-        { text: 'Whatever makes you happy', color: '#00ff88', img: 'yes-image.jpg' },
-        { text: 'Ask Mr. Kilogore', color: '#88cc44', img: 'yes-image.jpg' },
-        { text: 'If it makes you happy', color: '#00ff88', img: 'yes-image.jpg' },
-        { text: 'Ask again', color: '#ffcc33', img: 'yes-image.jpg' }
+        { text: 'Ask someone near you', color: '#ffaa33', img: 'salute-blue-emoji-blue.png' },
+        { text: 'It will happen', color: '#00ff88', img: 'thousand-yard-stare-blue-emoji-blue.png' },
+        { text: 'Perchance', color: '#00ffaa', img: 'wink-blue-emoji-blue.png' },
+        { text: 'Whatever makes you happy', color: '#00ff88', img: 'wearing-shades-blue-emoji-violet.png' },
+        { text: 'Ask Mr. Kilogore', color: '#88cc44', img: 'zany-blue-emoji-blue.png' },
+        { text: 'If it makes you happy', color: '#00ff88', img: 'red-lips-smack-kiss-blue-emoji-blue.png' },
+        { text: 'Ask again', color: '#ffcc33', img: 'waving-hello-blue-emoji-blue.png' }
     ];
 
     function shakeMagic8Ball() {
